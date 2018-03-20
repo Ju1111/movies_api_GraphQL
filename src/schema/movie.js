@@ -1,4 +1,7 @@
 export const Movie = `
+
+  union SearchResult = Movie | TVShow | TVShowEpisode | Company | Person
+
   interface Media {
     id: ID!
     title: String!
@@ -24,10 +27,15 @@ export const Movie = `
     running: Boolean
   }
 
-
   type Person {
     id: ID!
     name: String!
     known_for: [Media]
+  }
+
+  type Query {
+    movies: [Movie]
+    movie(imdb_id: String!): Movie
+    search(q: String!): SearchResult
   }
 `;
